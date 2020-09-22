@@ -7,17 +7,17 @@
 set token [lindex $argv 0];
 
 set count 1;
-while { $count < 9 } {
-   spawn nsrr download shhs/polysomnography/edfs/shhs1/shhs1-20000${count}.edf
-   expect {
-       "Enter your token:" { send "${token}\r"; exp_continue }
-       eof { }
-   }
-   set count [ expr $count+1];
+while { $count < 10 } {
+    spawn nsrr download shhs/polysomnography/edfs/shhs1/shhs1-20000${count}.edf
+    expect {
+        "Enter your token:" { send "${token}\r"; exp_continue }
+        eof { }
+    }
+    set count [ expr $count+1];
 }
 
 set count 10;
-while { $count < 99 } {
+while { $count < 100 } {
    spawn nsrr download shhs/polysomnography/edfs/shhs1/shhs1-2000${count}.edf
    expect {
        "Enter your token:" { send "${token}\r"; exp_continue }
@@ -25,4 +25,3 @@ while { $count < 99 } {
    }
    set count [ expr $count+1];
 }
-EOD
