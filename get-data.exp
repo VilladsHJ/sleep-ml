@@ -25,3 +25,5 @@ while { $count < 100 } {
    }
    set count [ expr $count+1];
 }
+set timeout -1
+expect eof
