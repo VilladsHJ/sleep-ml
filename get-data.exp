@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+# Use this script to download the SHHS sleep data from NSRR.
+# Run as
+# expect get-data.exp 3821-fslsPA2RS43mykJJfsfK
+# where the token is found in https://sleepdata.org/token .
+
+set token [lindex $argv 0];
+
+set count 1;
+while { $count < 9 } {
+   spawn nsrr download shhs/polysomnography/edfs/shhs1/shhs1-20000${count}.edf
+   expect {
+       "Enter your token:" { send "${token}\r"; exp_continue }
+       eof { }
+   }
+   set count [ expr $count+1];
+}
+
+set count 10;
+while { $count < 99 } {
+   spawn nsrr download shhs/polysomnography/edfs/shhs1/shhs1-2000${count}.edf
+   expect {
+       "Enter your token:" { send "${token}\r"; exp_continue }
+       eof { }
+   }
+   set count [ expr $count+1];
+}
+EOD
